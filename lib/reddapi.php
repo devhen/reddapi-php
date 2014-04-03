@@ -36,7 +36,9 @@ class ReddAPI
 	}
 	
 	/**
-	 * Use curl if available
+	 * Make a request. User curl if available
+	 * @param	string	$cmd	The request
+	 * @return	json
 	 */
 	private function _request($cmd) {
 		
@@ -47,7 +49,12 @@ class ReddAPI
 		}
 		
 	}
-
+	
+	/**
+	 * Make the request using curl
+	 * @param	string	$cmd	The request
+	 * @return	json
+	 */
 	private function _request_curl($cmd) {
 		
 		$url =  'https://www.reddapi.com/v1/json/'.$cmd;
@@ -68,6 +75,11 @@ class ReddAPI
 		return $result ? json_decode($result) : false;        
 	}
 	
+	/**
+	 * Make the request using file_get_contents
+	 * @param	string	$cmd	The request
+	 * @return	json
+	 */
 	private function _request_file($cmd) {
 		
 		$url = 'https://www.reddapi.com/v1/json/'.$cmd;
