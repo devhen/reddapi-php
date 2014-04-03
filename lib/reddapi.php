@@ -22,11 +22,10 @@ class ReddAPI
 	 */
 	private function validate_key() {
 		
-		// Test if the key is valid by doing a simple balance check
-		$validate = $this->_request('GET', '&a=get_balance');
+		// Not done yet. Waiting for changes to be finalized with beta API
 		
 		// Return true/false if key is valid
-		if ($validate == "Invalid API Key")
+		if ($validate == "Invalid API Key!")
 			$this->valid_key = false;
 		else
 			$this->valid_key = true;
