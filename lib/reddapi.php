@@ -19,8 +19,10 @@ class ReddAPI
 	
 	/**
 	 * Validate the API key
+	 * @param	void
+	 * @return	boolean
 	 */
-	private function validate_key() {
+	private function _validate_key() {
 		
 		// Not done yet. Waiting for changes to be finalized with beta API
 		/*
@@ -92,16 +94,22 @@ class ReddAPI
 	}
 	
 	/**
-	* API Key set and get
-	*/
+	 * Set the API key
+	 * @param	string	$key	The API key
+	 * @return	boolean
+	 */
 	public function set_key($key) {
 		
 		$this->api_key = $key;
-		return $this->validate_key();
+		return $this->_validate_key();
 		
 	}
-
-	public function get_key($key) {
+	
+	/**
+	 * Get the API key
+	 * @param	void
+	 */
+	public function get_key() {
 	
 		return $this->api_key;
 		
