@@ -23,13 +23,15 @@ class ReddAPI
 	private function validate_key() {
 		
 		// Not done yet. Waiting for changes to be finalized with beta API
-		
+		/*
 		// Return true/false if key is valid
 		if ($validate == "Invalid API Key!")
 			$this->valid_key = false;
 		else
 			$this->valid_key = true;
 		return $this->valid_key;
+		*/
+		return false;
 	}
 	
 	/**
@@ -61,7 +63,7 @@ class ReddAPI
 		$result = curl_exec($ch);
 		curl_close($ch);
 		
-		// Spit back the response object or fail
+		// Return response object or fail
 		return $result ? json_decode($result) : false;        
 	}
 	
@@ -72,7 +74,7 @@ class ReddAPI
 		// Execute the request
 		$result = file_get_contents($url)
 		
-		// Spit back the response object or fail
+		// Return response object or fail
 		return $result ? json_decode($result) : false;        
 	}
 	
