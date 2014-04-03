@@ -38,7 +38,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Make a request. User curl if available
+	 * Make a request. Use curl if available
 	 * @param   string  $cmd  The request
 	 * @return  json
 	 */
