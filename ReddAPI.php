@@ -4,7 +4,7 @@
  * reddapi-php
  * PHP wrapper for ReddAPI, the Reddcoin API
  * 
- * @author Devin Henderson <devin@six19.com>
+ * @author Devin Henderson <code@devhen.net>
  */
  
 class ReddAPI
