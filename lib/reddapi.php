@@ -19,8 +19,8 @@ class ReddAPI
 	
 	/**
 	 * Validate the API key
-	 * @param	void
-	 * @return	boolean
+	 * @param   void
+	 * @return  boolean
 	 */
 	private function _validate_key() {
 		
@@ -39,8 +39,8 @@ class ReddAPI
 	
 	/**
 	 * Make a request. User curl if available
-	 * @param	string	$cmd	The request
-	 * @return	json
+	 * @param   string  $cmd  The request
+	 * @return  json
 	 */
 	private function _request($cmd) {
 		
@@ -54,8 +54,8 @@ class ReddAPI
 	
 	/**
 	 * Make the request using curl
-	 * @param	string	$cmd	The request
-	 * @return	json
+	 * @param   string  $cmd  The request
+	 * @return  json
 	 */
 	private function _request_curl($cmd) {
 		
@@ -79,8 +79,8 @@ class ReddAPI
 	
 	/**
 	 * Make the request using file_get_contents
-	 * @param	string	$cmd	The request
-	 * @return	json
+	 * @param   string  $cmd  The request
+	 * @return  json
 	 */
 	private function _request_file($cmd) {
 		
@@ -95,8 +95,8 @@ class ReddAPI
 	
 	/**
 	 * Set the API key
-	 * @param	string	$key	The API key
-	 * @return	boolean
+	 * @param   string  $key  The API key
+	 * @return  boolean
 	 */
 	public function set_key($key) {
 		
@@ -107,7 +107,7 @@ class ReddAPI
 	
 	/**
 	 * Get the API key
-	 * @param	void
+	 * @param  void
 	 */
 	public function get_key() {
 	
@@ -117,8 +117,8 @@ class ReddAPI
 
 	/**
 	 * Creates a new user
-	 * @param	string	$username	The username to create
-	 * @return	json
+	 * @param   string  $username  The username to create
+	 * @return  json
 	 */
 	public function create_new_user($username) {
 		
@@ -128,8 +128,8 @@ class ReddAPI
 
 	/**
 	 * Gets user list
-	 * @param	void
-	 * @return	json
+	 * @param   void
+	 * @return  json
 	 */
 	public function get_user_list() {
 		
@@ -139,8 +139,8 @@ class ReddAPI
 
 	/**
 	 * Gets info for a user
-	 * @param	string	$username	The username to get info for
-	 * @return	json
+	 * @param   string  $username  The username to get info for
+	 * @return  json
 	 */
 	public function get_user_info($username) {
 		
@@ -150,8 +150,8 @@ class ReddAPI
 
 	/**
 	 * Gets balance for a user
-	 * @param	string	$username	The username to get balance for
-	 * @return	json
+	 * @param   string  $username  The username to get balance for
+	 * @return  json
 	 */
 	public function get_user_balance($username) {
 		
@@ -161,10 +161,10 @@ class ReddAPI
 
 	/**
 	 * Sends to a Reddcoin address
-	 * @param	string	$username	The username to send from
-	 * @param	float	$amount		The amount to send
-	 * @param	string	$address	The Reddcoin address to send to
-	 * @return	json
+	 * @param   string  $username  The username to send from
+	 * @param   float   $amount    The amount to send
+	 * @param   string  $address   The Reddcoin address to send to
+	 * @return  json
 	 */
 	public function send_to_address($username, $amount, $address) {
 		
@@ -174,10 +174,10 @@ class ReddAPI
 
 	/**
 	 * Moves coins from one user to another
-	 * @param	string	$username_from	The username to move from
-	 * @param	float	$amount			The amount to move
-	 * @param	string	$username_to	The username to move to
-	 * @return	json
+	 * @param   string  $username_from  The username to move from
+	 * @param   float   $amount         The amount to move
+	 * @param   string  $username_to    The username to move to
+	 * @return  json
 	 */
 	public function move_to_user($username_from, $amount, $username_to) {
 		
