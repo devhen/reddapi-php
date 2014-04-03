@@ -25,10 +25,11 @@ class ReddAPI
 		// Not done yet. Waiting for changes to be finalized with beta API
 		/*
 		// Return true/false if key is valid
-		if ($validate == "Invalid API Key!")
+		if ($validate == "Invalid API Key!") {
 			$this->valid_key = false;
-		else
+		} else {
 			$this->valid_key = true;
+		}
 		return $this->valid_key;
 		*/
 		return false;
@@ -81,15 +82,17 @@ class ReddAPI
 	/**
 	* API Key set and get
 	*/
-	public function set_key($key)
-	{
+	public function set_key($key) {
+		
 		$this->api_key = $key;
 		return $this->validate_key();
+		
 	}
 
-	public function get_key($key)
-	{
+	public function get_key($key) {
+	
 		return $this->api_key;
+		
 	}
 
 	/**
