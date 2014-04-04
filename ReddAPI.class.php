@@ -11,15 +11,17 @@ class ReddAPI
 {
 
 	// Private variables
-	private $api_key;
+	private $key_get;
+	private $key_post;
 	
 	/**
 	 * Construct the object
 	 * @param  string  $key  API key
 	 */
-	function __construct($key='')
+	function __construct($key_get='', $key_post='')
 	{
-		$this->api_key = $key;
+		$this->key_get = $key_get;
+		$this->key_post = $key_post;
 	}
 	
 	/**
@@ -31,8 +33,6 @@ class ReddAPI
 	 */
 	private function _request($method, $cmd, $args=array())
 	{
-		$args = array('APIKey' => $this->api_key) + $args;
-		
 		if($method == 'POST') {
 			return $this->_request_post($cmd, json_encode($args));
 		} else if($method == 'GET') {
@@ -48,6 +48,8 @@ class ReddAPI
 	 */
 	private function _request_post($cmd, $args)
 	{
+		$args = array('APIKey' => $this->key_post) + $args;
+		
 		$url = 'https://api.reddapi.com/v1/json/'.$cmd;
 		
 		// Initiate curl and set headers/options
@@ -85,6 +87,8 @@ class ReddAPI
 	 */
 	private function _request_get($cmd, $args)
 	{
+		$args = array('APIKey' => $this->key_get) + $args;
+		
 		$url = 'https://api.reddapi.com/v1/json/'.$cmd.'/'.implode('/', $args);
 		
 		// Initiate curl and set headers/options
@@ -112,22 +116,41 @@ class ReddAPI
 	}
 	
 	/**
-	 * Set the API key
+	 * Set the API key for GET requests
 	 * @param  string  $key  The API key
 	 */
-	public function set_key($key)
+	public function set_key_get($key)
 	{
-		$this->api_key = $key;
+		$this->key_get = $key;
 	}
 	
 	/**
-	 * Get the API key
+	 * Set the API key for POST requests
+	 * @param  string  $key  The API key
+	 */
+	public function set_key_post($key)
+	{
+		$this->key_post = $key;
+	}
+	
+	/**
+	 * Get the API key for GET requests
 	 * @param  void
 	 * @return string
 	 */
-	public function get_key()
+	public function get_key_get()
 	{
-		return $this->api_key;
+		return $this->key_get;
+	}
+	
+	/**
+	 * Get the API key for POST requests
+	 * @param  void
+	 * @return string
+	 */
+	public function get_key_post()
+	{
+		return $this->key_post;
 	}
 	
 	/**

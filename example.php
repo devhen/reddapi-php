@@ -2,13 +2,14 @@
 // Include the ReddAPI class
 include("ReddAPI.class.php");
 
-// You can instantiate the ReddAPI object using no arguments and then set your API key later:
+// You can instantiate the ReddAPI object using no arguments and then set your API keys later:
 $api = new ReddAPI();
 // ...
-$api->set_key('iVEH17M2RYiE3csHgeT2Cuelr7dM5c8wTgsYTq0ufXv62lSuU08qv6zwp3Z6286n');
+$api->set_key_get('iVEH17M2RYiE3csHgeT2Cuelr7dM5c8wTgsYTq0ufXv62lSuU08qv6zwp3Z6286n');
+$api->set_key_post('JkA24a86VB153ndVfkjW8anpH3bFWB427HdqxoJfpTkm83aV2atc3Gzh5UtB72lU');
 
-// Or you can instantiate the object using your API key:
-$api = new ReddAPI('iVEH17M2RYiE3csHgeT2Cuelr7dM5c8wTgsYTq0ufXv62lSuU08qv6zwp3Z6286n');
+// Or you can instantiate the object using your API keys (first the GET key, then the POST key):
+$api = new ReddAPI('iVEH17M2RYiE3csHgeT2Cuelr7dM5c8wTgsYTq0ufXv62lSuU08qv6zwp3Z6286n',' JkA24a86VB153ndVfkjW8anpH3bFWB427HdqxoJfpTkm83aV2atc3Gzh5UtB72lU');
 
 // We can get a json object containing all of our users:
 $users = $api->get_user_list();
