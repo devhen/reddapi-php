@@ -48,7 +48,7 @@ object(stdClass)#1 (1) {
 // We can create a new user:
 $user_info = $api->create_new_user('username');
 
-// create_new_user() returns info on the user that it created:
+// Which returns info on the user that it created:
 var_dump($user_info);
 /*
 object(stdClass)#4 (3) {
