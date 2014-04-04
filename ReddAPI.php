@@ -118,7 +118,6 @@ class ReddAPI
 	/**
 	 * Set the API key
 	 * @param   string  $key  The API key
-	 * @return  boolean
 	 */
 	public function set_key($key) {
 		
