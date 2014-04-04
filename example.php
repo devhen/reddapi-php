@@ -12,7 +12,7 @@ $api->set_key('iVEH17M2RYiE3csHgeT2Cuelr7dM5c8wTgsYTq0ufXv62lSuU08qv6zwp3Z6286n'
 // Or you can instantiate the object using your API key:
 $api = new ReddAPI('iVEH17M2RYiE3csHgeT2Cuelr7dM5c8wTgsYTq0ufXv62lSuU08qv6zwp3Z6286n');
 
-// We can get json object containing all of our users:
+// We can get a json object containing all of our users:
 $users = $api->get_user_list();
 var_dump($users);
 
@@ -47,7 +47,7 @@ object(stdClass)#1 (1) {
 $user_info = $api->create_new_user('username');
 var_dump($user_info);
 
-// This function returns info on the user that was created:
+// As you can see, create_new_user() returns info on the user that it created:
 /*
 object(stdClass)#8 (3) {
   ["DateCreated"]=>
