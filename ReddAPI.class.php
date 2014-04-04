@@ -17,7 +17,8 @@ class ReddAPI
 	 * Construct the object
 	 * @param  string  $key  API key
 	 */
-	function __construct($key='') {
+	function __construct($key='')
+	{
 		$this->api_key = $key;
 	}
 	
