@@ -2,8 +2,6 @@
 // Include the ReddAPI class
 include("ReddAPI.php");
 
-// There are two ways to instantiate the object.
-
 // You can instantiate the ReddAPI object using no arguments and then set your API key later:
 $api = new ReddAPI();
 // ...
