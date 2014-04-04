@@ -66,16 +66,12 @@ class ReddAPI
 		curl_close($curl);
 		
 		if($result) {
-			
 			$result = json_decode($result);
-			
-			// Log any errors
+			// Log any errors:
 			if(isset($result->ErrorMessage)) {
 				error_log('ReddAPI Error: ' . $result->ErrorMessage);
 			}
-			
 			return $result;
-			
 		} else {
 			return false;
 		}
@@ -104,16 +100,12 @@ class ReddAPI
 		curl_close($curl);
 		
 		if($result) {
-			
 			$result = json_decode($result);
-			
 			// Log any errors
 			if(isset($result->ErrorMessage)) {
 				error_log('ReddAPI Error: ' . $result->ErrorMessage);
 			}
-			
 			return $result;
-			
 		} else {
 			return false;
 		}
