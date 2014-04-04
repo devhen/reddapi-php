@@ -24,7 +24,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Make a request
+	 * Private function for making a request
 	 * @param   string  $method  POST or GET
 	 * @param   string  $cmd   Operation
 	 * @param   array   $args  Arguments
@@ -43,7 +43,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Make the request using POST
+	 * Private function for making a request using POST
 	 * @param   string  $cmd   Operation
 	 * @param   array   $args  Arguments
 	 * @return  json
@@ -81,7 +81,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Make the request using GET
+	 * Private function for making a request using GET
 	 * @param   string  $cmd   Operation
 	 * @param   array   $args  Arguments
 	 * @return  json
