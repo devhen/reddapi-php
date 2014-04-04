@@ -48,14 +48,14 @@ class ReddAPI
 	 */
 	private function _request_post($cmd, $args)
 	{
-		$url =  'https://api.reddapi.com/v1/json/'.$cmd;
+		$url = 'https://api.reddapi.com/v1/json/'.$cmd;
 		
 		// Initiate curl and set headers/options
 		$curl  = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 			'Content-Type: application/json',
-			'Content-Length: ' . strlen($args))
+			'Content-Length: '.strlen($args))
 		);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, true);
@@ -69,7 +69,7 @@ class ReddAPI
 			$result = json_decode($result);
 			// Log any errors
 			if(isset($result->ErrorMessage)) {
-				error_log('ReddAPI Error: ' . $result->ErrorMessage);
+				error_log('ReddAPI Error: '.$result->ErrorMessage);
 			}
 			return $result;
 		} else {
@@ -85,7 +85,7 @@ class ReddAPI
 	 */
 	private function _request_get($cmd, $args)
 	{
-		$url =  'https://api.reddapi.com/v1/json/'.$cmd.'/'.implode('/', $args);
+		$url = 'https://api.reddapi.com/v1/json/'.$cmd.'/'.implode('/', $args);
 		
 		// Initiate curl and set headers/options
 		$curl  = curl_init();
@@ -103,7 +103,7 @@ class ReddAPI
 			$result = json_decode($result);
 			// Log any errors
 			if(isset($result->ErrorMessage)) {
-				error_log('ReddAPI Error: ' . $result->ErrorMessage);
+				error_log('ReddAPI Error: '.$result->ErrorMessage);
 			}
 			return $result;
 		} else {
