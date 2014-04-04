@@ -10,87 +10,113 @@
 class ReddAPI
 {
 
-	/**
-	 * Private variables
-	 */
-	 
+	// Private variables
 	private $api_key;
-	private $valid_key = false;
 	
 	/**
-	 * Validate the API key
-	 * @param   void
-	 * @return  boolean
+	 * Construct the object
+	 * @param  string  $key  API key
 	 */
-	private function _validate_key() {
+	function __construct($key='') {
 		
-		// Not done yet. Waiting for changes to be finalized with beta API
-		/*
-		// Return true/false if key is valid
-		if ($validate == "Invalid API Key!") {
-			$this->valid_key = false;
-		} else {
-			$this->valid_key = true;
-		}
-		return $this->valid_key;
-		*/
-		return false;
+		$this->api_key = $key;
+		
 	}
 	
 	/**
-	 * Make a request. Use curl if available
-	 * @param   string  $cmd  The request
+	 * Make a request
+	 * @param   string  $method  POST or GET
+	 * @param   string  $cmd   Operation
+	 * @param   array   $args  Arguments
 	 * @return  json
 	 */
-	private function _request($cmd) {
+	private function _request($method, $cmd, $args=array()) {
 		
-		if(function_exists('curl_version')) {
-			return $this->_request_curl($cmd);
-		} else {
-			return $this->_request_file($cmd);
+		$args = array('APIKey' => $this->api_key) + $args;
+		
+		if($method == 'POST') {
+			return $this->_request_post($cmd, json_encode($args));
+		} else if($method == 'GET') {
+			return $this->_request_get($cmd, $args);
 		}
 		
 	}
 	
 	/**
-	 * Make the request using curl
-	 * @param   string  $cmd  The request
+	 * Make the request using POST
+	 * @param   string  $cmd   Operation
+	 * @param   array   $args  Arguments
 	 * @return  json
 	 */
-	private function _request_curl($cmd) {
+	private function _request_post($cmd, $args) {
 		
-		$url =  'https://www.reddapi.com/v1/json/'.$cmd;
+		$url =  'https://api.reddapi.com/v1/json/'.$cmd;
 		
 		// Initiate curl and set headers/options
-		$ch  = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		$curl  = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 			'Content-Type: application/json',
-		));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			'Content-Length: ' . strlen($args))
+		);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $args);
 		
 		// Execute the curl request
-		$result = curl_exec($ch);
-		curl_close($ch);
+		$result = curl_exec($curl);
+		curl_close($curl);
 		
-		// Return response object or fail
-		return $result ? json_decode($result) : false;        
+		if($result) {
+			
+			$result = json_decode($result, true);
+			if(isset($result['ErrorMessage'])) {
+				error_log('ReddAPI.php - '.$result['ErrorMessage']);
+			}
+			
+			return $result;
+			
+		} else {
+			return false;
+		}
 	}
 	
 	/**
-	 * Make the request using file_get_contents
-	 * @param   string  $cmd  The request
+	 * Make the request using GET
+	 * @param   string  $cmd   Operation
+	 * @param   array   $args  Arguments
 	 * @return  json
 	 */
-	private function _request_file($cmd) {
+	private function _request_get($cmd, $args) {
 		
-		$url = 'https://www.reddapi.com/v1/json/'.$cmd;
+		$url =  'https://api.reddapi.com/v1/json/'.$cmd.'/'.implode('/', $args);
 		
-		// Execute the request
-		$result = file_get_contents($url)
+		// Initiate curl and set headers/options
+		$curl  = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+			'Content-Type: application/json',
+		));
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		
-		// Return response object or fail
-		return $result ? json_decode($result) : false;        
+		// Execute the curl request
+		$result = curl_exec($curl);
+		var_dump(curl_getinfo($curl));
+		curl_close($curl);
+		
+		if($result) {
+			
+			$result = json_decode($result, true);
+			
+			if(isset($result['ErrorMessage'])) {
+				error_log('ReddAPI.php - '.$result['ErrorMessage']);
+			}
+			
+			return $result;
+			
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -101,7 +127,6 @@ class ReddAPI
 	public function set_key($key) {
 		
 		$this->api_key = $key;
-		return $this->_validate_key();
 		
 	}
 	
@@ -114,18 +139,7 @@ class ReddAPI
 		return $this->api_key;
 		
 	}
-
-	/**
-	 * Creates a new user
-	 * @param   string  $username  The username to create
-	 * @return  json
-	 */
-	public function create_new_user($username) {
-		
-		return $this->_request('CreateNewUser/'.$this->get_key().'/'.$username);
-		
-	}
-
+	
 	/**
 	 * Gets user list
 	 * @param   void
@@ -133,10 +147,10 @@ class ReddAPI
 	 */
 	public function get_user_list() {
 		
-		return $this->_request('GetUserList/'.$this->get_key());
+		return $this->_request('GET', 'GetUserList');
 		
 	}
-
+	
 	/**
 	 * Gets info for a user
 	 * @param   string  $username  The username to get info for
@@ -144,10 +158,14 @@ class ReddAPI
 	 */
 	public function get_user_info($username) {
 		
-		return $this->_request('GetUserInfo/'.$this->get_key().'/'.$username);
+		$args = array(
+			'Username' => $username
+		);
+		
+		return $this->_request('GET', 'GetUserInfo', $args);
 		
 	}
-
+	
 	/**
 	 * Gets balance for a user
 	 * @param   string  $username  The username to get balance for
@@ -155,10 +173,29 @@ class ReddAPI
 	 */
 	public function get_user_balance($username) {
 		
-		return $this->_request('GetUserInfo/'.$this->get_key().'/'.$username);
+		$args = array(
+			'Username' => $username
+		);
+		
+		return $this->_request('GET', 'GetUserBalance', $args);
 		
 	}
-
+	
+	/**
+	 * Creates a new user and returns info for that user
+	 * @param   string  $username  The username to create
+	 * @return  json
+	 */
+	public function create_new_user($username) {
+		
+		$args = array(
+			'Username' => $username
+		);
+		
+		return $this->_request('POST', 'CreateNewUser', $args);
+		
+	}
+	
 	/**
 	 * Sends to a Reddcoin address
 	 * @param   string  $username  The username to send from
@@ -168,20 +205,32 @@ class ReddAPI
 	 */
 	public function send_to_address($username, $amount, $address) {
 		
-		return $this->_request('SendToAddress/'.$this->get_key().'/'.$username.'/'.$amount.'/'.$address);
+		$args = array(
+			'UsernameFrom' => $username,
+			'AddressTo' => $address,
+			'Amount' => $amount
+		);
+		
+		return $this->_request('POST', 'SendToAddress', $args);
 		
 	}
-
+	
 	/**
 	 * Moves coins from one user to another
 	 * @param   string  $username_from  The username to move from
-	 * @param   float   $amount         The amount to move
 	 * @param   string  $username_to    The username to move to
+	 * @param   float   $amount         The amount to move
 	 * @return  json
 	 */
-	public function move_to_user($username_from, $amount, $username_to) {
+	public function move_to_user($username_from, $username_to, $amount) {
 		
-		return $this->_request('MoveToUser/'.$this->get_key().'/'.$username.'/'.$amount.'/'.$address);
+		$args = array(
+			'UsernameFrom' => $username_from,
+			'UsernameTo' => $username_to,
+			'Amount' => $amount
+		);
+		
+		return $this->_request('POST', 'MoveToUser', $args);
 		
 	}
 
