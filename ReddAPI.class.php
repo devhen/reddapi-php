@@ -25,8 +25,8 @@ class ReddAPI
 	/**
 	 * Private function for making a request
 	 * @param   string  $method  POST or GET
-	 * @param   string  $cmd   Operation
-	 * @param   array   $args  Arguments
+	 * @param   string  $cmd     Operation
+	 * @param   array   $args    Arguments
 	 * @return  json
 	 */
 	private function _request($method, $cmd, $args=array())

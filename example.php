@@ -18,9 +18,9 @@ var_dump($users);
 /*
 object(stdClass)#1 (1) {
   ["GetUserListResult"]=>
-  array(5) {
+  array(2) {
     [0]=>
-    object(stdClass)#5 (3) {
+    object(stdClass)#2 (3) {
       ["DateCreated"]=>
       string(26) "/Date(1396273679050+0000)/"
       ["DepositAddress"]=>
@@ -29,7 +29,7 @@ object(stdClass)#1 (1) {
       string(8) "billybob"
     }
     [1]=>
-    object(stdClass)#6 (3) {
+    object(stdClass)#3 (3) {
       ["DateCreated"]=>
       string(26) "/Date(1396279760020+0000)/"
       ["DepositAddress"]=>
@@ -47,7 +47,7 @@ $user_info = $api->create_new_user('username');
 // create_new_user() returns info on the user that it created:
 var_dump($user_info);
 /*
-object(stdClass)#8 (3) {
+object(stdClass)#4 (3) {
   ["DateCreated"]=>
   string(26) "/Date(1396581105383+0000)/"
   ["DepositAddress"]=>
@@ -57,5 +57,6 @@ object(stdClass)#8 (3) {
 }
 */
 
+// More example code coming very soon. Sit tight.
 
 ?>
