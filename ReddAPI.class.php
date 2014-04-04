@@ -18,9 +18,7 @@ class ReddAPI
 	 * @param  string  $key  API key
 	 */
 	function __construct($key='') {
-		
 		$this->api_key = $key;
-		
 	}
 	
 	/**
@@ -30,8 +28,8 @@ class ReddAPI
 	 * @param   array   $args  Arguments
 	 * @return  json
 	 */
-	private function _request($method, $cmd, $args=array()) {
-		
+	private function _request($method, $cmd, $args=array())
+	{
 		$args = array('APIKey' => $this->api_key) + $args;
 		
 		if($method == 'POST') {
@@ -39,7 +37,6 @@ class ReddAPI
 		} else if($method == 'GET') {
 			return $this->_request_get($cmd, $args);
 		}
-		
 	}
 	
 	/**
@@ -48,8 +45,8 @@ class ReddAPI
 	 * @param   array   $args  Arguments
 	 * @return  json
 	 */
-	private function _request_post($cmd, $args) {
-		
+	private function _request_post($cmd, $args)
+	{
 		$url =  'https://api.reddapi.com/v1/json/'.$cmd;
 		
 		// Initiate curl and set headers/options
@@ -86,8 +83,8 @@ class ReddAPI
 	 * @param   array   $args  Arguments
 	 * @return  json
 	 */
-	private function _request_get($cmd, $args) {
-		
+	private function _request_get($cmd, $args)
+	{
 		$url =  'https://api.reddapi.com/v1/json/'.$cmd.'/'.implode('/', $args);
 		
 		// Initiate curl and set headers/options
@@ -119,20 +116,18 @@ class ReddAPI
 	 * Set the API key
 	 * @param   string  $key  The API key
 	 */
-	public function set_key($key) {
-		
+	public function set_key($key)
+	{
 		$this->api_key = $key;
-		
 	}
 	
 	/**
 	 * Get the API key
 	 * @param  void
 	 */
-	public function get_key() {
-	
+	public function get_key()
+	{
 		return $this->api_key;
-		
 	}
 	
 	/**
@@ -140,10 +135,9 @@ class ReddAPI
 	 * @param   void
 	 * @return  json
 	 */
-	public function get_user_list() {
-		
+	public function get_user_list()
+	{
 		return $this->_request('GET', 'GetUserList');
-		
 	}
 	
 	/**
@@ -151,14 +145,13 @@ class ReddAPI
 	 * @param   string  $username  The username to get info for
 	 * @return  json
 	 */
-	public function get_user_info($username) {
-		
+	public function get_user_info($username)
+	{
 		$args = array(
 			'Username' => $username
 		);
 		
 		return $this->_request('GET', 'GetUserInfo', $args);
-		
 	}
 	
 	/**
@@ -166,14 +159,13 @@ class ReddAPI
 	 * @param   string  $username  The username to get balance for
 	 * @return  json
 	 */
-	public function get_user_balance($username) {
-		
+	public function get_user_balance($username)
+	{
 		$args = array(
 			'Username' => $username
 		);
 		
 		return $this->_request('GET', 'GetUserBalance', $args);
-		
 	}
 	
 	/**
@@ -181,14 +173,13 @@ class ReddAPI
 	 * @param   string  $username  The username to create
 	 * @return  json
 	 */
-	public function create_new_user($username) {
-		
+	public function create_new_user($username)
+	{
 		$args = array(
 			'Username' => $username
 		);
 		
 		return $this->_request('POST', 'CreateNewUser', $args);
-		
 	}
 	
 	/**
@@ -198,8 +189,8 @@ class ReddAPI
 	 * @param   string  $address   The Reddcoin address to send to
 	 * @return  json
 	 */
-	public function send_to_address($username, $amount, $address) {
-		
+	public function send_to_address($username, $amount, $address)
+	{
 		$args = array(
 			'UsernameFrom' => $username,
 			'AddressTo' => $address,
@@ -207,7 +198,6 @@ class ReddAPI
 		);
 		
 		return $this->_request('POST', 'SendToAddress', $args);
-		
 	}
 	
 	/**
@@ -217,8 +207,8 @@ class ReddAPI
 	 * @param   float   $amount         The amount to move
 	 * @return  json
 	 */
-	public function move_to_user($username_from, $username_to, $amount) {
-		
+	public function move_to_user($username_from, $username_to, $amount)
+	{
 		$args = array(
 			'UsernameFrom' => $username_from,
 			'UsernameTo' => $username_to,
@@ -226,7 +216,6 @@ class ReddAPI
 		);
 		
 		return $this->_request('POST', 'MoveToUser', $args);
-		
 	}
 
 }
