@@ -123,6 +123,7 @@ class ReddAPI
 	/**
 	 * Get the API key
 	 * @param  void
+	 * @return string
 	 */
 	public function get_key()
 	{
