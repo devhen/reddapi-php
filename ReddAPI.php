@@ -69,11 +69,10 @@ class ReddAPI
 		
 		if($result) {
 			
-			$result = json_decode($result, true);
-			if(isset($result['ErrorMessage'])) {
-				error_log('ReddAPI.php - '.$result['ErrorMessage']);
+			$result = json_decode($result);
+			if(isset($result->ErrorMessage)) {
+				error_log('ReddAPI Error: ' . $result->ErrorMessage);
 			}
-			
 			return $result;
 			
 		} else {
@@ -101,17 +100,14 @@ class ReddAPI
 		
 		// Execute the curl request
 		$result = curl_exec($curl);
-		var_dump(curl_getinfo($curl));
 		curl_close($curl);
 		
 		if($result) {
 			
-			$result = json_decode($result, true);
-			
-			if(isset($result['ErrorMessage'])) {
-				error_log('ReddAPI.php - '.$result['ErrorMessage']);
+			$result = json_decode($result);
+			if(isset($result->ErrorMessage)) {
+				error_log('ReddAPI Error: ' . $result->ErrorMessage);
 			}
-			
 			return $result;
 			
 		} else {

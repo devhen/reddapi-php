@@ -12,16 +12,17 @@ $api->set_key('iVEH17M2RYiE3csHgeT2Cuelr7dM5c8wTgsYTq0ufXv62lSuU08qv6zwp3Z6286n'
 // Or you can instantiate the object using your API key:
 $api = new ReddAPI('iVEH17M2RYiE3csHgeT2Cuelr7dM5c8wTgsYTq0ufXv62lSuU08qv6zwp3Z6286n');
 
-// We can get an array containing all of our users:
+// We can get json object containing all of our users:
 $users = $api->get_user_list();
+var_dump($users);
 
 // Which returns something like this:
 /*
-array(1) {
+object(stdClass)#1 (1) {
   ["GetUserListResult"]=>
-  array(2) {
+  array(5) {
     [0]=>
-    array(3) {
+    object(stdClass)#5 (3) {
       ["DateCreated"]=>
       string(26) "/Date(1396273679050+0000)/"
       ["DepositAddress"]=>
@@ -30,7 +31,7 @@ array(1) {
       string(8) "billybob"
     }
     [1]=>
-    array(3) {
+    object(stdClass)#6 (3) {
       ["DateCreated"]=>
       string(26) "/Date(1396279760020+0000)/"
       ["DepositAddress"]=>
@@ -43,7 +44,20 @@ array(1) {
 */
 
 // We can create a new user:
-$user_info = $api->create_new_user('anotheruser');
+$user_info = $api->create_new_user('username');
+var_dump($user_info);
+
+// This function returns info on the user that was created:
+/*
+object(stdClass)#8 (3) {
+  ["DateCreated"]=>
+  string(26) "/Date(1396581105383+0000)/"
+  ["DepositAddress"]=>
+  string(34) "Rbno6yFpJuMXNRPxmquiuCUbEdSv3urXPq"
+  ["Username"]=>
+  string(8) "username"
+}
+*/
 
 
 ?>
