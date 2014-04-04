@@ -184,14 +184,14 @@ class ReddAPI
 	/**
 	 * Send from a user to a Reddcoin address
 	 * @param   string  $username  The username to send from
-	 * @param   float   $amount    The amount to send
 	 * @param   string  $address   The Reddcoin address to send to
+	 * @param   float   $amount    The amount to send
 	 * @return  json
 	 */
-	public function send_to_address($username, $amount, $address)
+	public function send_to_address($username_from, $address, $amount)
 	{
 		$args = array(
-			'UsernameFrom' => $username,
+			'UsernameFrom' => $username_from,
 			'AddressTo' => $address,
 			'Amount' => $amount
 		);
