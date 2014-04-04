@@ -136,7 +136,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Gets user list
+	 * Get user list
 	 * @param   void
 	 * @return  json
 	 */
@@ -147,7 +147,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Gets info for a user
+	 * Get info for a user
 	 * @param   string  $username  The username to get info for
 	 * @return  json
 	 */
@@ -162,7 +162,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Gets balance for a user
+	 * Get balance for a user
 	 * @param   string  $username  The username to get balance for
 	 * @return  json
 	 */
@@ -177,7 +177,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Creates a new user and returns info for that user
+	 * Create a new user and return info for that user
 	 * @param   string  $username  The username to create
 	 * @return  json
 	 */
@@ -192,7 +192,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Sends to a Reddcoin address
+	 * Send from a user to a Reddcoin address
 	 * @param   string  $username  The username to send from
 	 * @param   float   $amount    The amount to send
 	 * @param   string  $address   The Reddcoin address to send to
@@ -211,7 +211,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Moves coins from one user to another
+	 * Move coins from one user to another
 	 * @param   string  $username_from  The username to move from
 	 * @param   string  $username_to    The username to move to
 	 * @param   float   $amount         The amount to move
