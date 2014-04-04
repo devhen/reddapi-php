@@ -113,7 +113,7 @@ class ReddAPI
 	
 	/**
 	 * Set the API key
-	 * @param   string  $key  The API key
+	 * @param  string  $key  The API key
 	 */
 	public function set_key($key)
 	{
