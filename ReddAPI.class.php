@@ -10,13 +10,19 @@
 class ReddAPI
 {
 
-	// Private variables
+	// +-----------------------------------------------------------------------+
+	// | Private variables                                                     |
+	// +-----------------------------------------------------------------------+
 	private $key_get;
 	private $key_post;
 	
+	// +-----------------------------------------------------------------------+
+	// | Private methods                                                       |
+	// +-----------------------------------------------------------------------+
 	/**
 	 * Construct the object
-	 * @param  string  $key  API key
+	 * @param  string  $key_get   API key for GET
+	 * @param  string  $key_post  API key for POST
 	 */
 	function __construct($key_get='', $key_post='')
 	{
@@ -34,7 +40,7 @@ class ReddAPI
 	private function _request($method, $cmd, $args=array())
 	{
 		if($method == 'POST') {
-			return $this->_request_post($cmd, json_encode($args));
+			return $this->_request_post($cmd, $args);
 		} else if($method == 'GET') {
 			return $this->_request_get($cmd, $args);
 		}
@@ -57,11 +63,11 @@ class ReddAPI
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 			'Content-Type: application/json',
-			'Content-Length: '.strlen($args))
+			'Content-Length: '.strlen(json_encode($args)))
 		);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $args);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($args));
 		
 		// Execute the curl request
 		$result = curl_exec($curl);
@@ -115,6 +121,9 @@ class ReddAPI
 		}
 	}
 	
+	// +-----------------------------------------------------------------------+
+	// | API key set/get methods                                               |
+	// +-----------------------------------------------------------------------+
 	/**
 	 * Set the API key for GET requests
 	 * @param  string  $key  The API key
@@ -153,10 +162,13 @@ class ReddAPI
 		return $this->key_post;
 	}
 	
+	// +-----------------------------------------------------------------------+
+	// | Public methods                                                        |
+	// +-----------------------------------------------------------------------+
 	/**
 	 * Get user list
 	 * @param   void
-	 * @return  json
+	 * @return  array
 	 */
 	public function get_user_list()
 	{
@@ -180,7 +192,7 @@ class ReddAPI
 	/**
 	 * Get balance for a user
 	 * @param   string  $username  The username to get balance for
-	 * @return  json
+	 * @return  float
 	 */
 	public function get_user_balance($username)
 	{
@@ -190,6 +202,8 @@ class ReddAPI
 		
 		return $this->_request('GET', 'GetUserBalance', $args);
 	}
+	
+	// Public POST methods:
 	
 	/**
 	 * Create a new user and return info for that user
@@ -206,7 +220,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Send from a user to a Reddcoin address
+	 * Send from a user to a Reddcoin address and return the transaction ID
 	 * @param   string  $username  The username to send from
 	 * @param   string  $address   The Reddcoin address to send to
 	 * @param   float   $amount    The amount to send
