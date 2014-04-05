@@ -2,6 +2,7 @@
 
 /**
  * reddapi-php
+ * ReddAPI.class.php
  * PHP wrapper for ReddAPI, the Reddcoin API
  * 
  * @author Devin Henderson <code@devhen.net>
@@ -13,12 +14,14 @@ class ReddAPI
 	// +-----------------------------------------------------------------------+
 	// | Private variables                                                     |
 	// +-----------------------------------------------------------------------+
+	
 	private $key_get;
 	private $key_post;
 	
 	// +-----------------------------------------------------------------------+
 	// | Private methods                                                       |
 	// +-----------------------------------------------------------------------+
+	
 	/**
 	 * Construct the object
 	 * @param  string  $key_get   API key for GET
@@ -122,10 +125,11 @@ class ReddAPI
 	}
 	
 	// +-----------------------------------------------------------------------+
-	// | API key set/get methods                                               |
+	// | Public methods for API key get/set                                    |
 	// +-----------------------------------------------------------------------+
+	
 	/**
-	 * Set the API key for GET requests
+	 * Sets the API key for GET requests
 	 * @param  string  $key  The API key
 	 */
 	public function set_key_get($key)
@@ -134,7 +138,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Set the API key for POST requests
+	 * Sets the API key for POST requests
 	 * @param  string  $key  The API key
 	 */
 	public function set_key_post($key)
@@ -143,7 +147,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Get the API key for GET requests
+	 * Gets the API key for GET requests
 	 * @param  void
 	 * @return string
 	 */
@@ -153,7 +157,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Get the API key for POST requests
+	 * Gets the API key for POST requests
 	 * @param  void
 	 * @return string
 	 */
@@ -163,10 +167,11 @@ class ReddAPI
 	}
 	
 	// +-----------------------------------------------------------------------+
-	// | Public methods                                                        |
+	// | Public GET methods                                                    |
 	// +-----------------------------------------------------------------------+
+	
 	/**
-	 * Get user list
+	 * Gets a list of all users
 	 * @param   void
 	 * @return  array
 	 */
@@ -176,7 +181,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Get info for a user
+	 * Gets info for a user
 	 * @param   string  $username  The username to get info for
 	 * @return  json
 	 */
@@ -190,7 +195,7 @@ class ReddAPI
 	}
 	
 	/**
-	 * Get balance for a user
+	 * Gets balance for a user
 	 * @param   string  $username  The username to get balance for
 	 * @return  float
 	 */
@@ -203,10 +208,12 @@ class ReddAPI
 		return $this->_request('GET', 'GetUserBalance', $args);
 	}
 	
-	// Public POST methods:
+	// +-----------------------------------------------------------------------+
+	// | Public POST methods                                                   |
+	// +-----------------------------------------------------------------------+
 	
 	/**
-	 * Create a new user and return info for that user
+	 * Creates a new user. Returns info for the user created
 	 * @param   string  $username  The username to create
 	 * @return  json
 	 */
@@ -220,11 +227,11 @@ class ReddAPI
 	}
 	
 	/**
-	 * Send from a user to a Reddcoin address and return the transaction ID
+	 * Sends from a user to a Reddcoin address. Returns the resulting transaction ID
 	 * @param   string  $username  The username to send from
 	 * @param   string  $address   The Reddcoin address to send to
 	 * @param   float   $amount    The amount to send
-	 * @return  json
+	 * @return  string
 	 */
 	public function send_to_address($username_from, $address, $amount)
 	{
@@ -238,11 +245,11 @@ class ReddAPI
 	}
 	
 	/**
-	 * Move coins from one user to another
+	 * Moves coins from one user to another. Returns "Success" or 
 	 * @param   string  $username_from  The username to move from
 	 * @param   string  $username_to    The username to move to
 	 * @param   float   $amount         The amount to move
-	 * @return  json
+	 * @return  string
 	 */
 	public function move_to_user($username_from, $username_to, $amount)
 	{

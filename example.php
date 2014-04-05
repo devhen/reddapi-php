@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * reddapi-php
+ * example.php
+ * Usage examples for ReddAPI.class.php
+ * 
+ * @author Devin Henderson <code@devhen.net>
+ */
+
 // Include the ReddAPI class
 include("ReddAPI.class.php");
 
@@ -22,7 +31,7 @@ var_dump($users);
 /*
 array(2) {
   [0]=>
-  object(stdClass)#2 (3) {
+  object(stdClass)#1 (3) {
     ["DateCreated"]=>
     string(26) "/Date(1396273679050+0000)/"
     ["DepositAddress"]=>
@@ -31,7 +40,7 @@ array(2) {
     string(8) "billybob"
   }
   [1]=>
-  object(stdClass)#3 (3) {
+  object(stdClass)#2 (3) {
     ["DateCreated"]=>
     string(26) "/Date(1396279760020+0000)/"
     ["DepositAddress"]=>
@@ -48,7 +57,7 @@ $user = $api->create_new_user('new_user');
 // Which returns info on the user that it created:
 var_dump($user);
 /*
-object(stdClass)#4 (3) {
+object(stdClass)#3 (3) {
   ["DateCreated"]=>
   string(26) "/Date(1396655499973+0000)/"
   ["DepositAddress"]=>
