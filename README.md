@@ -6,7 +6,7 @@ PHP wrapper for ReddAPI, the Reddcoin API
 
 ### Available Methods:
 
-## get_user_list()
+#### get_user_list()
 ```php
 /**
  * Gets a list of all users
@@ -16,7 +16,7 @@ PHP wrapper for ReddAPI, the Reddcoin API
 public function get_user_list()
 ```
 
-## get_user_info()
+#### get_user_info()
 ```php
 /**
  * Gets info for a user
@@ -26,7 +26,7 @@ public function get_user_list()
 public function get_user_info($username)
 ```
 
-## get_user_balance
+#### get_user_balance
 ```php
 /**
  * Gets balance for a user
@@ -36,7 +36,7 @@ public function get_user_info($username)
 public function get_user_balance($username)
 ```
 
-## create_new_user()
+#### create_new_user()
 ```php
 /**
  * Creates a new user. Returns info for the user created
@@ -46,7 +46,7 @@ public function get_user_balance($username)
 public function create_new_user($username)
 ```
 
-## send_to_address()
+#### send_to_address()
 ```php
 /**
  * Sends from a user to a Reddcoin address. Returns the resulting transaction ID
@@ -58,7 +58,7 @@ public function create_new_user($username)
 public function send_to_address($username_from, $address, $amount)
 ```
 
-## move_to_user()
+#### move_to_user()
 ```php
 /**
  * Moves coins from one user to another. If successful returns "Success" 
