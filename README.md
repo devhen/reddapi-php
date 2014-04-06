@@ -70,3 +70,5 @@ public function move_to_user($username_from, $username_to, $amount)
 ```
 
 _See example.php for usage examples_
+
+_You can find the ReddAPI REST documentation here: https://www.reddapi.com/docs/rest/v1/_
