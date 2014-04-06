@@ -5,7 +5,8 @@
  * ReddAPI.class.php
  * PHP wrapper for ReddAPI, the Reddcoin API
  * 
- * @author Devin Henderson <code@devhen.net>
+ * @author  Devin Henderson <code@devhen.net>
+ * @version 2014.04.05.1
  */
  
 class ReddAPI
@@ -34,22 +35,6 @@ class ReddAPI
 	}
 	
 	/**
-	 * Private function for making a request
-	 * @param   string  $method  POST or GET
-	 * @param   string  $cmd     Operation
-	 * @param   array   $args    Arguments
-	 * @return  json
-	 */
-	private function _request($method, $cmd, $args=array())
-	{
-		if($method == 'POST') {
-			return $this->_request_post($cmd, $args);
-		} else if($method == 'GET') {
-			return $this->_request_get($cmd, $args);
-		}
-	}
-	
-	/**
 	 * Private function for making a request using POST
 	 * @param   string  $cmd   Operation
 	 * @param   array   $args  Arguments
@@ -61,7 +46,6 @@ class ReddAPI
 		
 		$url = 'https://api.reddapi.com/v1/json/'.$cmd;
 		
-		// Initiate curl and set headers/options
 		$curl  = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
@@ -72,7 +56,6 @@ class ReddAPI
 		curl_setopt($curl, CURLOPT_POST, true);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($args));
 		
-		// Execute the curl request
 		$result = curl_exec($curl);
 		curl_close($curl);
 		
@@ -100,7 +83,6 @@ class ReddAPI
 		
 		$url = 'https://api.reddapi.com/v1/json/'.$cmd.'/'.implode('/', $args);
 		
-		// Initiate curl and set headers/options
 		$curl  = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
@@ -108,7 +90,6 @@ class ReddAPI
 		));
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		
-		// Execute the curl request
 		$result = curl_exec($curl);
 		curl_close($curl);
 		
@@ -177,7 +158,7 @@ class ReddAPI
 	 */
 	public function get_user_list()
 	{
-		return $this->_request('GET', 'GetUserList');
+		return $this->_request_get('GetUserList');
 	}
 	
 	/**
@@ -191,7 +172,7 @@ class ReddAPI
 			'Username' => $username
 		);
 		
-		return $this->_request('GET', 'GetUserInfo', $args);
+		return $this->_request_get('GetUserInfo', $args);
 	}
 	
 	/**
@@ -205,7 +186,7 @@ class ReddAPI
 			'Username' => $username
 		);
 		
-		return $this->_request('GET', 'GetUserBalance', $args);
+		return $this->_request_get('GetUserBalance', $args);
 	}
 	
 	// +-----------------------------------------------------------------------+
@@ -223,7 +204,7 @@ class ReddAPI
 			'Username' => $username
 		);
 		
-		return $this->_request('POST', 'CreateNewUser', $args);
+		return $this->_request_post('CreateNewUser', $args);
 	}
 	
 	/**
@@ -241,11 +222,11 @@ class ReddAPI
 			'Amount' => $amount
 		);
 		
-		return $this->_request('POST', 'SendToAddress', $args);
+		return $this->_request_post('SendToAddress', $args);
 	}
 	
 	/**
-	 * Moves coins from one user to another. Returns "Success" or 
+	 * Moves coins from one user to another. If successful returns "Success" 
 	 * @param   string  $username_from  The username to move from
 	 * @param   string  $username_to    The username to move to
 	 * @param   float   $amount         The amount to move
@@ -259,7 +240,7 @@ class ReddAPI
 			'Amount' => $amount
 		);
 		
-		return $this->_request('POST', 'MoveToUser', $args);
+		return $this->_request_post('MoveToUser', $args);
 	}
 
 }
