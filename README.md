@@ -16,6 +16,7 @@ PHP wrapper for ReddAPI, the Reddcoin API
 public function get_user_list()
 ```
 
+
 #### get_user_info()
 ```php
 /**
@@ -26,7 +27,8 @@ public function get_user_list()
 public function get_user_info($username)
 ```
 
-#### get_user_balance
+
+#### get_user_balance()
 ```php
 /**
  * Gets balance for a user
@@ -35,6 +37,7 @@ public function get_user_info($username)
  */
 public function get_user_balance($username)
 ```
+
 
 #### create_new_user()
 ```php
@@ -45,6 +48,7 @@ public function get_user_balance($username)
  */
 public function create_new_user($username)
 ```
+
 
 #### send_to_address()
 ```php
@@ -58,6 +62,7 @@ public function create_new_user($username)
 public function send_to_address($username_from, $address, $amount)
 ```
 
+
 #### move_to_user()
 ```php
 /**
@@ -70,3 +75,5 @@ public function send_to_address($username_from, $address, $amount)
 public function move_to_user($username_from, $username_to, $amount)
 ```
 
+
+_See example.php for usage examples_
