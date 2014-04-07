@@ -6,7 +6,7 @@
  * PHP wrapper for ReddAPI, the Reddcoin API
  * 
  * @author  Devin Henderson <code@devhen.net>
- * @version 2014.04.05.1
+ * @version 2014.04.06.1
  */
  
 class ReddAPI
@@ -42,7 +42,7 @@ class ReddAPI
 	 */
 	private function _request_post($cmd, $args=array())
 	{
-		$args = array('APIKey' => $this->key_post) + $args;
+		$args = json_encode(array('APIKey' => $this->key_post) + $args);
 		
 		$url = 'https://api.reddapi.com/v1/json/'.$cmd;
 		
@@ -50,11 +50,11 @@ class ReddAPI
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 			'Content-Type: application/json',
-			'Content-Length: '.strlen(json_encode($args)))
+			'Content-Length: '.strlen($args))
 		);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($args));
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $args);
 		
 		$result = curl_exec($curl);
 		curl_close($curl);
@@ -79,9 +79,9 @@ class ReddAPI
 	 */
 	private function _request_get($cmd, $args=array())
 	{
-		$args = array('APIKey' => $this->key_get) + $args;
+		$args = implode('/', array('APIKey' => $this->key_get) + $args);
 		
-		$url = 'https://api.reddapi.com/v1/json/'.$cmd.'/'.implode('/', $args);
+		$url = 'https://api.reddapi.com/v1/json/'.$cmd.'/'.$args;
 		
 		$curl  = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
