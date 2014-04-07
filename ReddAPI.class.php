@@ -40,7 +40,7 @@ class ReddAPI
 	 * @param   array   $args  Arguments
 	 * @return  json
 	 */
-	private function _request_post($cmd, $args)
+	private function _request_post($cmd, $args=array())
 	{
 		$args = array('APIKey' => $this->key_post) + $args;
 		
@@ -77,7 +77,7 @@ class ReddAPI
 	 * @param   array   $args  Arguments
 	 * @return  json
 	 */
-	private function _request_get($cmd, $args)
+	private function _request_get($cmd, $args=array())
 	{
 		$args = array('APIKey' => $this->key_get) + $args;
 		
