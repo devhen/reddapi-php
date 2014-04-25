@@ -72,3 +72,7 @@ public function move_to_user($username_from, $username_to, $amount)
 _See example.php for usage examples_
 
 _ReddAPI REST documentation: https://www.reddapi.com/docs/rest/v1/_
+
+_You can find me in the #reddcoin channel on Freenode IRC_
+
+_You might also be interested in ummjackson's DogeAPI wrapper: https://github.com/ummjackson/dogeapi-php_
