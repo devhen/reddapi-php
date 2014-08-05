@@ -99,6 +99,17 @@ var_dump($balance);
 float(110.20)
 */
 
+// get_user_balance_detail() gives more detailed information about the user's balance:
+var_dump($api->get_user_balance_detail($user->Username));
+/*
+object(stdClass)#3 (2) {
+  ["ConfirmedBalance"]=>
+  string(10) "110.20000000"
+  ["PendingDeposits"]=>
+  string(1) "0"
+}
+*/
+
 // We can now send coins from that user to any Reddcoin address:
 $tx = $api->send_to_address($user->Username, 'RwbiZSqZduJdXPfhP48E5pxDQtpF6VhhAd', 50.1);
 

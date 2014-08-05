@@ -189,6 +189,20 @@ class ReddAPI
 		return $this->_request_get('GetUserBalance', $args);
 	}
 	
+	/**
+	 * Gets balance detail for a user
+	 * @param   string  $username  The username to get balance for
+	 * @return  json
+	 */
+	public function get_user_balance_detail($username)
+	{
+		$args = array(
+			'Username' => $username
+		);
+		
+		return $this->_request_get('GetUserBalanceDetail', $args);
+	}
+	
 	// +-----------------------------------------------------------------------+
 	// | Public POST methods                                                   |
 	// +-----------------------------------------------------------------------+

@@ -35,6 +35,16 @@ public function get_user_info($username)
 public function get_user_balance($username)
 ```
 
+#### get_user_balance_detail()
+```php
+/**
+ * Gets balance detail for a user
+ * @param   string  $username  The username to get balance for
+ * @return  json
+ */
+public function get_user_balance_detail($username)
+```
+
 #### create_new_user()
 ```php
 /**
