@@ -6,7 +6,7 @@
  * Usage examples for ReddAPI.class.php
  * 
  * @author Devin Henderson <code@devhen.net>
- * @version 2014.04.05.1
+ * @version 2014.08.05.1
  */
 
 // Include the ReddAPI class
