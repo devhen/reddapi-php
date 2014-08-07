@@ -6,7 +6,7 @@
  * PHP wrapper for ReddAPI, the Reddcoin API
  * 
  * @author  Devin Henderson <code@devhen.net>
- * @version 2014.08.05.1
+ * @version 2014.08.07.1
  */
  
 class ReddAPI
@@ -154,7 +154,10 @@ class ReddAPI
 	/**
 	 * Gets a list of all users
 	 * @param   void
-	 * @return  array
+	 * @return  array of
+	 *				json->DateCreated string
+	 *					->DepositAddress string
+	 *					->Username string
 	 */
 	public function get_user_list()
 	{
@@ -164,7 +167,9 @@ class ReddAPI
 	/**
 	 * Gets info for a user
 	 * @param   string  $username  The username to get info for
-	 * @return  json
+	 * @return  json->DateCreated string
+	 * 				->DepositAddress string
+	 * 				->Username string
 	 */
 	public function get_user_info($username)
 	{
@@ -192,7 +197,8 @@ class ReddAPI
 	/**
 	 * Gets balance detail for a user
 	 * @param   string  $username  The username to get balance for
-	 * @return  json
+	 * @return  json->ConfirmedBalance string
+	 * 				->PendingDeposits string
 	 */
 	public function get_user_balance_detail($username)
 	{
@@ -210,7 +216,9 @@ class ReddAPI
 	/**
 	 * Creates a new user. Returns info for the user created
 	 * @param   string  $username  The username to create
-	 * @return  json
+	 * @return  json->DateCreated string
+	 * 				->DepositAddress string
+	 * 				->Username string
 	 */
 	public function create_new_user($username)
 	{

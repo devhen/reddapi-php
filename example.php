@@ -6,7 +6,7 @@
  * Usage examples for ReddAPI.class.php
  * 
  * @author Devin Henderson <code@devhen.net>
- * @version 2014.08.05.1
+ * @version 2014.08.07.1
  */
 
 // Include the ReddAPI class
@@ -15,13 +15,13 @@ include("ReddAPI.class.php");
 // You can instantiate the ReddAPI object using no arguments and then set your API keys later:
 $api = new ReddAPI();
 // ...
-$api->set_key_get('7qK85UWoFMoW1jZGOxDyayip0Y4XK5cRAdztAW8TrzlCMpx1r8ANvE3gJ5GhY8eK');
-$api->set_key_post('hb7uKv6ycDepxAqp5RouSz7zS5tf4Hgvg3E85nMeF48YcKr5cEgqOzCpcGeOBy36');
+$api->set_key_get('XXXXXXXXXXXXXXXXXXXXX_YOUR_API_KEY_FOR_GET_XXXXXXXXXXXXXXXXXXXXX');
+$api->set_key_post('XXXXXXXXXXXXXXXXXXXXX_YOUR_API_KEY_FOR_POST_XXXXXXXXXXXXXXXXXXXX');
 
 // Or you can instantiate the object using your API keys (first the GET key, then the POST key):
 $api = new ReddAPI(
-	'7qK85UWoFMoW1jZGOxDyayip0Y4XK5cRAdztAW8TrzlCMpx1r8ANvE3gJ5GhY8eK',
-	'hb7uKv6ycDepxAqp5RouSz7zS5tf4Hgvg3E85nMeF48YcKr5cEgqOzCpcGeOBy36'
+	'XXXXXXXXXXXXXXXXXXXXX_YOUR_API_KEY_FOR_GET_XXXXXXXXXXXXXXXXXXXXX',
+	'XXXXXXXXXXXXXXXXXXXXX_YOUR_API_KEY_FOR_POST_XXXXXXXXXXXXXXXXXXXX'
 );
 
 // We can get an array of all of our users:

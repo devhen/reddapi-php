@@ -10,7 +10,10 @@ A PHP wrapper for ReddAPI, the Reddcoin API
 /**
  * Gets a list of all users
  * @param   void
- * @return  array
+ * @return  array of
+ *				json->DateCreated string
+ *					->DepositAddress string
+ *					->Username string
  */
 public function get_user_list()
 ```
@@ -20,7 +23,9 @@ public function get_user_list()
 /**
  * Gets info for a user
  * @param   string  $username  The username to get info for
- * @return  json
+ * @return  json->DateCreated string
+ * 				->DepositAddress string
+ * 				->Username string
  */
 public function get_user_info($username)
 ```
@@ -40,7 +45,8 @@ public function get_user_balance($username)
 /**
  * Gets balance detail for a user
  * @param   string  $username  The username to get balance for
- * @return  json
+ * @return  json->ConfirmedBalance string
+ * 				->PendingDeposits string
  */
 public function get_user_balance_detail($username)
 ```
@@ -50,7 +56,9 @@ public function get_user_balance_detail($username)
 /**
  * Creates a new user. Returns info for the user created
  * @param   string  $username  The username to create
- * @return  json
+ * @return  json->DateCreated string
+ * 				->DepositAddress string
+ * 				->Username string
  */
 public function create_new_user($username)
 ```
